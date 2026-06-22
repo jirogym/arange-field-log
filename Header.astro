@@ -1,0 +1,27 @@
+---
+import { categoryLabel } from '../consts.js';
+const { post, variant = 'grid' } = Astro.props;
+const d = post.data;
+const isFail = d.category === 'failure';
+const dateStr = new Date(d.pubDate).toLocaleDateString('ja-JP').replaceAll('/', '.');
+const url = `/articles/${post.id}/`;
+const heroLines = (d.heroLog && d.heroLog.length ? d.heroLog : ['› log', '✓ result', '› next']);
+---
+<a href={url} class={`card ${variant === 'side' ? '' : ''}`}>
+  <div class="card__thumb">
+    <span class={`thumb-badge mono ${isFail ? 'rd' : ''}`}>{categoryLabel(d.category)}</span>
+    {d.logNo && <span class="thumb-num mono">{d.logNo}</span>}
+    <div class="thumb-log mono">
+      {heroLines.slice(0, 4).map((l) => <span class="ln" set:html={l} />)}
+    </div>
+  </div>
+  <div class="card__body">
+    <span class={`card__cat mono ${isFail ? 'rd' : ''}`}>{categoryLabel(d.category)}{d.series ? ` / ${d.series}` : ''}</span>
+    <h3 class="card__title">{d.title}</h3>
+    {variant !== 'side' && d.description && <p class="card__excerpt">{d.description}</p>}
+    <div class="card__foot mono">
+      <span>{dateStr}</span>
+      {d.readingTime && <><span class="d"></span><span>読了 {d.readingTime}分</span></>}
+    </div>
+  </div>
+</a>

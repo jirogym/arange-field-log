@@ -1,0 +1,65 @@
+# 現場ログ CMS 設定（Sveltia / Decap 互換）
+# ★公開時に repo を「GitHubのowner/リポジトリ名」へ変更してください
+backend:
+  name: github
+  repo: jirogym/arange-field-log
+  branch: main
+
+# 画像のアップロード先
+media_folder: "public/images"
+public_folder: "/images"
+
+locale: ja
+
+collections:
+  - name: articles
+    label: 記事
+    label_singular: 記事
+    folder: "src/content/articles"
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    preview_path: "articles/{{slug}}"
+    fields:
+      - { label: タイトル, name: title, widget: string }
+      - { label: "説明（meta / AIO要約に使用）", name: description, widget: text }
+      - label: カテゴリ
+        name: category
+        widget: select
+        options:
+          - { label: AI実装, value: ai }
+          - { label: クリエイティブ, value: creative }
+          - { label: 広告・グロース, value: growth }
+          - { label: 事業開発, value: business }
+          - { label: 継続と身体, value: body }
+          - { label: 失敗ログ, value: failure }
+      - { label: タグ, name: tags, widget: list, required: false, default: [] }
+      - { label: 公開日, name: pubDate, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: 更新日, name: updatedDate, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", required: false }
+      - { label: 著者, name: author, widget: string, default: "筑波 次郎" }
+      - { label: "読了時間（分）", name: readingTime, widget: number, value_type: int, required: false }
+      - { label: シリーズ名, name: series, widget: string, required: false }
+      - { label: "ログ番号（例 #021）", name: logNo, widget: string, required: false }
+      - { label: 注目記事にする, name: featured, widget: boolean, default: false }
+      - { label: 下書き, name: draft, widget: boolean, default: false }
+      - label: "要点（TL;DR）"
+        name: tldr
+        widget: list
+        required: false
+        field: { label: 項目, name: item, widget: string }
+      - label: "FAQ（AI引用に効く）"
+        name: faq
+        widget: list
+        required: false
+        summary: "{{fields.q}}"
+        fields:
+          - { label: 質問, name: q, widget: string }
+          - { label: 回答, name: a, widget: text }
+      - label: "ヒーローのログ表示（任意・装飾）"
+        name: heroLog
+        widget: list
+        required: false
+        field: { label: 行, name: line, widget: string }
+      - { label: "OG画像（任意）", name: ogImage, widget: string, required: false }
+      - { label: 本文, name: body, widget: markdown }

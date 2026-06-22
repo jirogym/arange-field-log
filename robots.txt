@@ -1,0 +1,16 @@
+# 現場ログ / THE FIELD LOG
+
+> AI・動画・広告・事業開発・継続。株式会社アレンジ（arange Inc.）が、現場で実際に動かし検証した記録を公開するオウンドメディア。ノウハウ紹介ではなく、自社の一次データと失敗を残す。動かない正解より、動く仮説を。
+
+## 主要ページ
+- [トップ](https://field-log.arange.co.jp/): メディア概要と最新の検証記録
+- [AI実装](https://field-log.arange.co.jp/category/ai/): 社内でAIを業務に組み込む実験ログ
+- [クリエイティブ](https://field-log.arange.co.jp/category/creative/): AI動画・広告クリエイティブの検証
+- [広告・グロース](https://field-log.arange.co.jp/category/growth/): 広告改善・グロースの実データ
+- [事業開発](https://field-log.arange.co.jp/category/business/): 新規事業・事業推進の手順
+- [継続と身体](https://field-log.arange.co.jp/category/body/): HYROX・回復・習慣設計
+- [失敗ログ](https://field-log.arange.co.jp/category/failure/): うまくいかなかった記録と改善
+
+## 運営
+- 株式会社アレンジ（arange Inc.） https://arange.co.jp/
+- 代表 筑波次郎（Tsukuba Jiro / Jay）

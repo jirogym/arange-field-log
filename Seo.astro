@@ -1,0 +1,34 @@
+---
+import { SITE, CATEGORIES } from '../consts.js';
+---
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand__logo en">arange</span>
+        <p>{SITE.name} / {SITE.nameEn}。AI・動画・広告・事業開発を横断する少数精鋭の事業推進チーム、{SITE.publisherJa}が運営する検証記録メディアです。</p>
+      </div>
+      <div class="foot-col">
+        <h4 class="mono">CATEGORY</h4>
+        {CATEGORIES.map((c) => <a href={`/category/${c.slug}/`}>{c.label}</a>)}
+      </div>
+      <div class="foot-col">
+        <h4 class="mono">SERIES</h4>
+        <a href="/category/ai/">AIワークフロー実験ログ</a>
+        <a href="/category/failure/">失敗ログ</a>
+        <a href="/category/body/">継続と身体</a>
+        <a href="/rss.xml">RSS</a>
+      </div>
+      <div class="foot-col">
+        <h4 class="mono">arange</h4>
+        <a href={SITE.corporate}>コーポレートサイト</a>
+        <a href={SITE.contactUrl}>お問い合わせ</a>
+        <a href="/rss.xml">RSS / 更新</a>
+      </div>
+    </div>
+    <div class="foot-bot mono">
+      <span>© {new Date().getFullYear()} {SITE.publisherEn} — {SITE.publisherJa}</span>
+      <span>{SITE.tagline}</span>
+    </div>
+  </div>
+</footer>

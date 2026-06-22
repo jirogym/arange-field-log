@@ -1,0 +1,19 @@
+---
+import { SITE, CATEGORIES } from '../consts.js';
+---
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label={`${SITE.name} ホーム`}>
+      <span class="brand__logo en">arange</span>
+      <span class="brand__sep" aria-hidden="true">/</span>
+      <span class="brand__media">{SITE.name}<small class="mono">{SITE.nameEn}</small></span>
+    </a>
+    <nav class="nav__menu" aria-label="カテゴリ">
+      {CATEGORIES.map((c) => (
+        <a href={`/category/${c.slug}/`} style={c.accent === 'red' ? 'color:var(--red)' : ''}>{c.label}</a>
+      ))}
+    </nav>
+    <a href={SITE.contactUrl} class="nav__cta">お問い合わせ →</a>
+    <button class="burger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+  </div>
+</header>

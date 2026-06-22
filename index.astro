@@ -1,0 +1,35 @@
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { CATEGORIES } from './consts.js';
+
+const categorySlugs = CATEGORIES.map((c) => c.slug) as [string, ...string[]];
+
+const articles = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),            // meta description / AIO要約に使用
+      category: z.enum(categorySlugs),
+      tags: z.array(z.string()).default([]),
+      pubDate: z.coerce.date(),
+      updatedDate: z.coerce.date().optional(),
+      author: z.string().default('筑波 次郎'),
+      readingTime: z.number().optional(), // 分
+      series: z.string().optional(),
+      logNo: z.string().optional(),       // 例: "#018"
+      featured: z.boolean().default(false),
+      draft: z.boolean().default(false),
+      // AIO: 記事冒頭の要点。引用されやすい構造化に効く
+      tldr: z.array(z.string()).default([]),
+      // AIO: FAQ構造化データ（任意）
+      faq: z
+        .array(z.object({ q: z.string(), a: z.string() }))
+        .default([]),
+      // ヒーローのログ風表示（任意・装飾）
+      heroLog: z.array(z.string()).default([]),
+      ogImage: z.string().optional(),
+    }),
+});
+
+export const collections = { articles };
